@@ -1,0 +1,403 @@
+/* Background
+.container {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+  font-family: "Poppins", sans-serif;
+}
+
+.glass-card {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 30px;
+  width: 400px;
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+  animation: float 6s ease-in-out infinite;
+}
+
+
+.title {
+  text-align: center;
+  color: #00ffff;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+
+.input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: 0.3s;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.input:focus {
+  box-shadow: 0 0 10px #00ffff;
+  transform: scale(1.03);
+}
+
+
+.btn {
+  margin-top: 20px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #00ffff, #0077ff);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00ffff;
+}
+
+.main-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;   
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  background: linear-gradient(to right, #0f2027, #203a43);
+  overflow: hidden;
+  height: 100%;
+}
+
+
+.form-section {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-section {
+  width: 60%;
+  overflow-y: auto; 
+  padding: 30px;
+  color: white;
+  display: flex;
+  display: block; 
+  justify-content: center;
+} */
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap");
+
+:root {
+  --bg-primary: #0d0f14;
+  --bg-secondary: #13161e;
+  --bg-panel: #1a1e2a;
+  --bg-card: #1f2433;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-accent: rgba(245, 180, 0, 0.35);
+  --accent-gold: #f5b400;
+  --accent-gold-dim: rgba(245, 180, 0, 0.15);
+  --accent-teal: #00c9a7;
+  --accent-red: #ff4d6d;
+  --text-primary: #e8eaf0;
+  --text-secondary: #8890a4;
+  --text-muted: #50586a;
+  --text-label: #f5b400;
+  --input-bg: #10131a;
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(245, 180, 0, 0.08) inset;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+
+/* Background */
+.container {
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  background-image:
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(245, 180, 0, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(0, 201, 167, 0.03) 0%, transparent 60%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(255, 255, 255, 0.012) 39px,
+      rgba(255, 255, 255, 0.012) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 39px,
+      rgba(255, 255, 255, 0.012) 39px,
+      rgba(255, 255, 255, 0.012) 40px
+    );
+  font-family: "DM Sans", sans-serif;
+}
+
+/* Glass Card → Precision Panel */
+.glass-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  border-top: 1px solid rgba(245, 180, 0, 0.2);
+  padding: 32px 28px;
+  width: 400px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  opacity: 0.6;
+}
+
+.glass-card::after {
+  content: "ANALYSIS MODULE";
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Title */
+.title {
+  text-align: left;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title::before {
+  content: "▐";
+  color: var(--accent-gold);
+  font-size: 18px;
+}
+
+.form-subtitle {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+
+/* Grid layout */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+/* Field wrapper */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.field-label {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-label);
+  font-weight: 500;
+}
+
+/* Inputs */
+.input {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  outline: none;
+  background: var(--input-bg);
+  color: var(--text-primary);
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.input:focus {
+  border-color: rgba(245, 180, 0, 0.5);
+  box-shadow: 0 0 0 3px rgba(245, 180, 0, 0.08);
+  transform: none;
+}
+
+/* Button */
+.btn {
+  margin-top: 24px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--accent-gold);
+  color: #0d0f14;
+  font-weight: 700;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: "▶";
+  margin-right: 8px;
+  font-size: 10px;
+}
+
+.btn:hover {
+  background: #ffc72c;
+  box-shadow: 0 0 24px rgba(245, 180, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Main layout */
+.main-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  background: var(--bg-primary);
+  background-image:
+    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(245, 180, 0, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(0, 201, 167, 0.03) 0%, transparent 60%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(255, 255, 255, 0.012) 39px,
+      rgba(255, 255, 255, 0.012) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 39px,
+      rgba(255, 255, 255, 0.012) 39px,
+      rgba(255, 255, 255, 0.012) 40px
+    );
+  overflow: hidden;
+  height: 100%;
+}
+
+/* LEFT: Form */
+.form-section {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid var(--border-subtle);
+}
+
+/* RIGHT: Results */
+.result-section {
+  width: 60%;
+  overflow-y: auto;
+  padding: 36px 32px;
+  color: var(--text-primary);
+  display: block;
+}
+
+.result-section::-webkit-scrollbar {
+  width: 4px;
+}
+
+.result-section::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+.result-section::-webkit-scrollbar-thumb {
+  background: var(--border-accent);
+  border-radius: 2px;
+}
+
+/* Section header in results panel */
+.results-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.results-header h2 {
+  font-size: 13px;
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin: 0;
+}
+
+.results-header .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-teal);
+  box-shadow: 0 0 6px var(--accent-teal);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
